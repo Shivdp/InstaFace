@@ -31,13 +31,19 @@ let fire = {
   },
 
   onAuthStateChanged : function(user) {
-    //triggers on any state change
-    if (user) { // User is signed in!
-      changeUser(user); 
-    } else{
-      changeUser('no user')
+     //triggers on any state change
+     let result; 
+     if (user) {
+       result = {name: user.displayName, email: user.email}
+     } else {
+       result = {name: '', email: ''}
+     }
+      if (user) { // User is signed in!
+       changeUser(result); 
+      } else{
+       changeUser(result)
+      }
     }
-  }
 }
 
 
