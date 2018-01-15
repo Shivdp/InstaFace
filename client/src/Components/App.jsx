@@ -5,7 +5,7 @@ import initializeFeed from '../actions/initializeFeed';
 import axios from 'axios';
 import path from 'path'; 
 
-import Header from path.resolve(__dirname, './header.jsx');
+import Header from path.resolve(__dirname, '/header.jsx');
 import Search from '../containers/search';
 import Upload from '../containers/upload';
 import Feed from '../containers/feed';
