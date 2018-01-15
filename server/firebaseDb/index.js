@@ -4,22 +4,22 @@ const path = require('path');
 //requiring APIkey from .env file
 require('dotenv').config({path: path.resolve(__dirname, '/.env')});
 
-//const CONFIG = require('../../api'); 
-const apiKey = process.env.apiKey; 
-const authDomain = process.env.authDomain; 
-const databaseURL = process.env.databaseURL; 
-const projectId = process.env.projectId; 
-const storageBucket = process.env.storageBucket; 
-const messagingSenderId = process.env.messagingSenderId; 
+const CONFIG = require('../../api'); 
+// const apiKey = process.env.apiKey; 
+// const authDomain = process.env.authDomain; 
+// const databaseURL = process.env.databaseURL; 
+// const projectId = process.env.projectId; 
+// const storageBucket = process.env.storageBucket; 
+// const messagingSenderId = process.env.messagingSenderId; 
 
-const CONFIG = {
-  apiKey: apiKey,
-  authDomain: authDomain,
-  databaseURL: databaseURL,
-  projectId: projectId,
-  storageBucket: storageBucket,
-  messagingSenderId: messagingSenderId
-}
+// const CONFIG = {
+//   apiKey: apiKey,
+//   authDomain: authDomain,
+//   databaseURL: databaseURL,
+//   projectId: projectId,
+//   storageBucket: storageBucket,
+//   messagingSenderId: messagingSenderId
+// }
 //initializing firebase database with the APIkey
 firebase.initializeApp(CONFIG);
 

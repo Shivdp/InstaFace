@@ -1,22 +1,22 @@
 let firebase = require('firebase'); 
 
-//const config = require('../../api');
+const config = require('../../api');
 
-const apiKey = process.env.apiKey; 
-const authDomain = process.env.authDomain; 
-const databaseURL = process.env.databaseURL; 
-const projectId = process.env.projectId; 
-const storageBucket = process.env.storageBucket; 
-const messagingSenderId = process.env.messagingSenderId; 
+// const apiKey = process.env.apiKey; 
+// const authDomain = process.env.authDomain; 
+// const databaseURL = process.env.databaseURL; 
+// const projectId = process.env.projectId; 
+// const storageBucket = process.env.storageBucket; 
+// const messagingSenderId = process.env.messagingSenderId; 
 
-const config = {
-  apiKey: apiKey,
-  authDomain: authDomain,
-  databaseURL: databaseURL,
-  projectId: projectId,
-  storageBucket: storageBucket,
-  messagingSenderId: messagingSenderId
-}
+// const config = {
+//   apiKey: apiKey,
+//   authDomain: authDomain,
+//   databaseURL: databaseURL,
+//   projectId: projectId,
+//   storageBucket: storageBucket,
+//   messagingSenderId: messagingSenderId
+// }
 
 
 let auth; 
