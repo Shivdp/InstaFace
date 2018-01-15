@@ -40,13 +40,13 @@ class Search extends Component {
           return b.likes - a.likes;
         });
 
-        this.props.searchTag(data);
+        this.props.searchTag(sortedData);
       })
       .catch((err) => {
         console.error('Failed to search by tag', err);
       });
       
-    document.getElementsByClassName('searchInput')[0].value = '';//.reset();
+    document.getElementsByClassName('searchInput')[0].value = '';
     return false;
   }
 

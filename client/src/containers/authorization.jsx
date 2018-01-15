@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'; 
 import fire from '../firebaseAuth';
-import setUser from '../reducers/setUser'
-import { changeName } from '../actions/index'
+import setUser from '../reducers/setUser';
+import { changeName } from '../actions/index';
 import axios from 'axios'; 
+import searchByUserID from '../actions/searchByUserID';
 
 class Authorization extends Component {
   constructor(props) {
@@ -14,6 +15,8 @@ class Authorization extends Component {
     this.loginWithGoogle = this.loginWithGoogle.bind(this); 
     this.logOut = this.logOut.bind(this); 
     this.createUser = this.createUser.bind(this); 
+    this.getUserUploads = this.getUserUploads.bind(this);
+
     fire.initFirebase(this.changeUser);
   }
 
@@ -42,6 +45,36 @@ class Authorization extends Component {
     this.createUser(); 
   }
 
+  getUserUploads(e) {
+    e.preventDefault();
+    axios.get('/instaface/photos/getPhotoByUserID', {
+      params: {
+        user_ID: this.props.user.user_ID
+      }
+    })
+      .then((response) => {
+        const photosToDisplay = obj => {
+          const allPhotos = [];
+          
+          for (let key in obj) {
+            allPhotos.push(obj[key]);
+          }
+          
+          return allPhotos;
+        };
+
+        const data = photosToDisplay(response.data);
+
+        const sortedData = data.sort((a, b) => {
+          return b.likes - a.likes;
+        });
+
+        this.props.searchByUserID(sortedData);
+      })
+      .catch((err) => {
+        console.error('Failed to get user uploads', err);
+      });
+  }
 
   render() {
     return (
@@ -50,6 +83,12 @@ class Authorization extends Component {
       <div>
         <div>
           <span>Nice face, {this.props.user.name}!</span>
+          <button 
+            onClick={this.getUserUploads}
+            className="searchByUserBtn"
+          >
+            Your Uploads
+          </button>
           <button 
             onClick={this.logOut}
             className="logoutBtn"
@@ -88,7 +127,8 @@ const mapStateToProps = (state) => {
 
 const matchDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    changeName: changeName
+    changeName: changeName,
+    searchByUserID: searchByUserID
   }, dispatch); 
 }
 

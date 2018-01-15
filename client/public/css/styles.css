@@ -144,7 +144,7 @@ input {
   opacity: 0.75;
 }
 
-.logoutBtn {
+.logoutBtn, .searchByUserBtn {
   height: 35px;
   border-radius: 3px;
   border: none;
@@ -153,11 +153,17 @@ input {
   width: 125px;
   cursor: pointer;
   margin-left: 25px;
+  margin-bottom: 10px;
 }
 
-.logoutBtn:hover {
+.searchByUserBtn {
+  width: 150px;
+}
+
+.logoutBtn:hover, .searchByUserBtn:hover {
   background-color: #172d5e;
 }
+
 
 
 /*

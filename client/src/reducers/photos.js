@@ -8,6 +8,10 @@ const photos = (state=null, action) => {
       return action.payload;
       break;
 
+    case "SEARCH_BY_USER_ID":
+      return action.payload;
+      break;
+
     default: 
       return state;
       break;
