@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import searchTag from '../actions/searchTag';
+import axios from 'axios';
 import Likes from './likes';
 
 class FeedEntry extends Component {
@@ -11,6 +15,7 @@ class FeedEntry extends Component {
 
     this.hoverHandler = this.hoverHandler.bind(this);
     this.hoverOutHandler = this.hoverOutHandler.bind(this);
+    this.tagClickHandler = this.tagClickHandler.bind(this);
   }
 
   hoverHandler() {
@@ -23,6 +28,37 @@ class FeedEntry extends Component {
     this.setState({
       hovered: false
     });
+  }
+
+  tagClickHandler(e) {
+    e.preventDefault();
+    axios.get('/instaface/photos/getPhotoByTag', {
+      params: {
+        tag_name: this.props.photo.tag_name.full_name
+      }
+    })
+      .then((response) => {
+        const photosToDisplay = obj => {
+          const allPhotos = [];
+          
+          for (let key in obj) {
+            allPhotos.push(obj[key]);
+          }
+          
+          return allPhotos;
+        };
+
+        const data = photosToDisplay(response.data);
+
+        const sortedData = data.sort((a, b) => {
+          return b.likes - a.likes;
+        });
+
+        this.props.searchTag(sortedData);
+      })
+      .catch((err) => {
+        console.error('Failed to search by tag', err);
+      });
   }
 
   render() {
@@ -38,12 +74,33 @@ class FeedEntry extends Component {
 
         {
           !this.state.hovered ? null :
-          !this.props.photo.tag_name ? null :
-          <div 
-            className="centeredTagName"
-            onMouseEnter={this.hoverHandler}
-          >
-            {this.props.photo.tag_name.full_name}
+          !this.props.photo.faceRectangle ? null :
+          <div>
+            <div 
+              className="faceRectangle"
+              onMouseEnter={this.hoverHandler}
+              style={{
+                top: this.props.photo.faceRectangle.topLeftY + 'px',
+                left: this.props.photo.faceRectangle.topLeftX + 'px',
+                width: this.props.photo.faceRectangle.width + 'px',
+                height: this.props.photo.faceRectangle.height + 'px'
+              }}
+            >
+            </div>
+            {
+              !this.props.photo.tag_name ? null :
+              <div 
+                className="centeredTagName"
+                onMouseEnter={this.hoverHandler}
+                onClick={this.tagClickHandler}
+                style={{
+                  top: (this.props.photo.faceRectangle.topLeftY + this.props.photo.faceRectangle.height) + 'px',
+                  left: (this.props.photo.faceRectangle.topLeftX + (this.props.photo.faceRectangle.width / 4)) + 'px'
+                }}
+              >
+                {this.props.photo.tag_name.full_name}
+              </div>
+            }
           </div>
         }
 
@@ -57,4 +114,10 @@ class FeedEntry extends Component {
   }
 }
 
-export default FeedEntry;
+const matchDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    searchTag: searchTag
+  }, dispatch);
+}
+
+export default connect(null, matchDispatchToProps)(FeedEntry);
