@@ -39,7 +39,10 @@ class FeedEntry extends Component {
         {
           !this.state.hovered ? null :
           !this.props.photo.tag_name ? null :
-          <div className="centeredTagName">
+          <div 
+            className="centeredTagName"
+            onMouseEnter={this.hoverHandler}
+          >
             {this.props.photo.tag_name.full_name}
           </div>
         }
