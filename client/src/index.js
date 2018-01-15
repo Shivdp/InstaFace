@@ -2,7 +2,7 @@ import 'babel-polyfill';
 
 import React from 'react'; 
 import { render } from 'react-dom'; 
-import App from './components/app';
+import App from './Components/app';
 import allReducers from './reducers';
 
 import { createStore } from 'redux';

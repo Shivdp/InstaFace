@@ -4,6 +4,7 @@ const path = require('path');
 //requiring APIkey from .env file
 require('dotenv').config({path: path.resolve(__dirname, '/.env')});
 
+//const CONFIG = require('../../api'); 
 const apiKey = process.env.apiKey; 
 const authDomain = process.env.authDomain; 
 const databaseURL = process.env.databaseURL; 

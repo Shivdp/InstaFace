@@ -1,5 +1,7 @@
 let firebase = require('firebase'); 
 
+//const config = require('../../api');
+
 const apiKey = process.env.apiKey; 
 const authDomain = process.env.authDomain; 
 const databaseURL = process.env.databaseURL; 
