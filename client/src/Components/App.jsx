@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import initializeFeed from '../actions/initializeFeed';
 import axios from 'axios';
-import path from ('path'); 
+import path from 'path'; 
 
 import Header from path.resolve(__dirname, './header.jsx');
 import Search from '../containers/search';
