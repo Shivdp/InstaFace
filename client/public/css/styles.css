@@ -294,6 +294,19 @@ Search
   ========================================
 */
 
+.feedContainer {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centeredTagName {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .feedWrapper {
   margin-bottom: 35px;
   margin-top: 85px;
@@ -302,6 +315,10 @@ Search
 .photoEntry {
   width: 100%;
   margin-bottom: 10px;
+}
+
+.photoEntry:hover {
+  opacity: 0.3;
 }
 
 .photoWrapper {

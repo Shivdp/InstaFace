@@ -110,15 +110,16 @@ class ConfirmTag extends Component {
                         type="text" 
                         placeholder="Enter Full Name" 
                         onChange={this.onTagChangeHandler} 
-                        className="modalInputTagName, modalInput"
+                        className="modalInputTagName modalInput"
                         required
                       />
                       :
                       <input 
                         type="text" 
                         defaultValue={this.props.activePhoto.tagPrediction} 
+                        placeholder="Enter Full Name" 
                         onChange={this.onTagChangeHandler} 
-                        className="modalInputTagName, modulInput"
+                        className="modalInputTagName modalInput"
                         required
                       />
                     }
