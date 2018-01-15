@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import initializeFeed from '../actions/initializeFeed';
 import axios from 'axios';
 
-import Header from './header';
+import Header from './header.jsx';
 import Search from '../containers/search';
 import Upload from '../containers/upload';
 import Feed from '../containers/feed';
-import Footer from './footer';
+import Footer from './footer.jsx';
 
 class App extends Component {
   constructor(props) {
