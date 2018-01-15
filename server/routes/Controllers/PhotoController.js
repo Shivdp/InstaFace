@@ -4,6 +4,7 @@ const enrollFace = require('../../facerecofuncs/enroll');
 const recognizeFace = require('../../facerecofuncs/recognize'); 
 const hostImage = require('../../imagehosting/hosting');
 const axios = require('axios'); 
+
 const PhotoController = {
     getPhoto: ((req, res) => {
         let url = req.originalUrl.slice(1)
@@ -23,7 +24,6 @@ const PhotoController = {
         hostImage.hostImage(photo, (url) => {
             photo_URL = url.imageUrl; 
             recognizeFace.recognizeFace('http://' + photo_URL, (result) => {
-                let photo_ID = photo_URL.split('/')[1]; 
                 let returnObj = {faceRectangle : result.faceRectangle}  
                 returnObj.photo_URL = photo_URL;            
                 if (result.candidates && result.candidates[0].confidence > 0.50) {
@@ -58,8 +58,9 @@ const PhotoController = {
     addPhotoTags : ((req, res) => {
         let faceRectangle = req.body.faceRectangle;
         let caption = req.body.caption; 
-        let photo_URL = req.body.photo_URL; 
-        let photo_ID = photo_URL.split('/')[1]; 
+        let photo_URL = req.body.photo_URL;
+        let photo_ID = photo_URL.split('/')[1] + photo_URL.split('/')[2]; 
+
         let user_ID = req.body.user_ID || 'Anonymous';
         firebaseDatabase.createPhoto(photo_ID, photo_URL, user_ID);
         enrollFace.enrollFace('http://' + photo_URL, req.body.tag_name, (bool) => {
@@ -78,7 +79,7 @@ const PhotoController = {
           });
     }), 
     addCaption : ((req, res) => {
-        let photo_ID = req.body.photo_URL.split('/')[1]; 
+        let photo_ID = req.body.photo_URL.split('/')[1] + req.body.photo_URL.split('/')[2]; 
         firebaseDatabase.addCaption(photo_ID, req.body.caption)
         res.status(201).send();
     }),
