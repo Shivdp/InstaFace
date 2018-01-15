@@ -1,5 +1,5 @@
 import React from 'react';
-import Authorization from '../containers/authorization';
+//import Authorization from '../containers/authorization';
 
 const Header = (props) => (
   <div className="header">
@@ -10,7 +10,7 @@ const Header = (props) => (
         className="logo"
         onClick={props.refreshFeed}
       />
-      <Authorization />
+      {/* <Authorization /> */}
     </div>
   </div>
 );
