@@ -13,7 +13,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['env', 'react']
+                    presets: ['enves2016', 'react']
                 }
             }
         ]
