@@ -24,7 +24,7 @@ app.use("/file-upload", routes);
 app.use("/imagizer.imageshack.com", (PhotoController.getPhoto)); 
 
 app.use(express.static(path.resolve(__dirname, '../client/public'))); 
-
+app.get('*/', (res, req) => {res.sendFile(express.static(path.resolve(__dirname, '../client/public')))} )
 app.listen(PORT, () => {
     console.log("app is listening on port ", PORT); 
 })
