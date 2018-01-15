@@ -1,9 +1,9 @@
 const path = require('path'); 
 
 module.exports = {
-    entry: path.resolve('./client/src/index.js'),
+    entry: path.resolve(__dirname, './client/src/index.js'),
     output: {
-        path: path.resolve('./client/public/'),
+        path: path.resolve(__dirname, './client/public/'),
         filename: 'bundle.js'
     }, 
     module: {
@@ -13,7 +13,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['env', 'es2015', 'react']
+                    presets: ['env', 'react']
                 }
             }
         ]
