@@ -33,8 +33,12 @@ class Search extends Component {
           
           return allPhotos;
         };
-        
+
         const data = photosToDisplay(response.data);
+
+        const sortedData = data.sort((a, b) => {
+          return b.likes - a.likes;
+        });
 
         this.props.searchTag(data);
       })

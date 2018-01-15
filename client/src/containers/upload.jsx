@@ -31,8 +31,14 @@ class Upload extends Component {
         tagPrediction: res.name,
         photo_URL: res.photo_URL
       });
-
+      
       this.toggleUploaded();
+
+      document.getElementById('modalToggle').click();
+    });
+
+    myDropzone.on('complete', (file) => {
+      myDropzone.removeFile(file);
     });
   }
 
@@ -72,7 +78,7 @@ class Upload extends Component {
         {
           !this.state.uploaded ? null :
           <div className="container">
-            <ConfirmTag 
+            <ConfirmTag
               toggleUploaded={this.toggleUploaded}
               refreshFeed={this.props.refreshFeed}
             />

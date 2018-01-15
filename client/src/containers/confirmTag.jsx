@@ -14,6 +14,13 @@ class ConfirmTag extends Component {
     this.onTagChangeHandler = this.onTagChangeHandler.bind(this);
     this.onCaptionChangeHandler = this.onCaptionChangeHandler.bind(this);
     this.confirmHandler = this.confirmHandler.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      tagConfirmation: this.props.activePhoto.tagPrediction || ''
+    });
   }
 
   onTagChangeHandler(e) {
@@ -72,15 +79,11 @@ class ConfirmTag extends Component {
   render() {
     return (
       <div>
-        <div className="fileUploader">
-          <button 
-            type="button" 
-            className="btn btn-primary confirmBtn" 
-            data-toggle="modal" 
-            data-target="#exampleModalLong"
-          >
-            Confirm Tag
-          </button>
+        <div
+          id="modalToggle"
+          data-toggle="modal" 
+          data-target="#exampleModalLong"
+        >
         </div>
 
         <div className="modal fade" id="exampleModalLong" tabIndex="-1" role="dialog" aria-labelledby="confirmationModal" aria-hidden="true">
